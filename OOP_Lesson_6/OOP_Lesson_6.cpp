@@ -14,6 +14,13 @@ using namespace std;
 // 2.
 // Создать собственный манипулятор endll для стандартного потока вывода, который выводит два перевода строки и сбрасывает буфер.
 //
+
+ostream& endll(ostream& out)
+{
+    out << endl << endl;
+    return out;
+}
+
 // 3.
 // Реализовать класс Player, который наследует от класса GenericPlayer.У этого класса будет 4 метода:
 // virtual bool IsHitting() const - реализация чисто виртуальной функции базового класса.
@@ -37,5 +44,5 @@ using namespace std;
 
 int main()
 {
-    
+    cout << "Test message1 " << endl << "Test message2" << endll << "Test message3" << endl;
 }

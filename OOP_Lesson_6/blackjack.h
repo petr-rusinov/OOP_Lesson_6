@@ -28,6 +28,7 @@ public:
         }
         return value;
     }
+    friend ostream& operator << (ostream& out, const Card& card);
 };
 
 
@@ -94,4 +95,13 @@ public:
     {
         cout << m_playerName << " busted" << endl;
     }
+    friend ostream& operator << (ostream& out, const GenericPlayer& gp);
 };
+
+// 5. 
+// Написать перегрузку оператора вывода для класса Card.Если карта перевернута рубашкой вверх(мы ее не видим), 
+// вывести ХХ, если мы ее видим, вывести масть и номинал карты.Также для класса GenericPlayer написать перегрузку 
+// оператора вывода, который должен отображать имя игрока и его карты, а также общую сумму очков его карт.
+//
+
+
