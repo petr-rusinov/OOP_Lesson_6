@@ -34,7 +34,7 @@ public:
 
 class Hand
 {
-private:
+protected:
     vector<Card*> m_cards; //колода карт
 public:
     Hand() { m_cards.reserve(7); }
@@ -82,20 +82,76 @@ public:
 
 class GenericPlayer : public Hand
 {
-private:
+protected:
     string m_playerName;
 public:
-    virtual bool isHitting() = 0;
-    bool isBoosted()
+    GenericPlayer(const string& name) : m_playerName(name) { }
+    virtual bool isHitting() const = 0;
+    bool isBoosted() const
     {
         return getTotal() > 21;
     }
 
-    void bust()
+    void bust() const
     {
         cout << m_playerName << " busted" << endl;
     }
     friend ostream& operator << (ostream& out, const GenericPlayer& gp);
+};
+
+// 3.
+// Реализовать класс Player, который наследует от класса GenericPlayer.У этого класса будет 4 метода:
+// virtual bool IsHitting() const - реализация чисто виртуальной функции базового класса.
+// Метод спрашивает у пользователя, нужна ли ему еще одна карта и возвращает ответ пользователя в виде true или false.
+// void Win() const - выводит на экран имя игрока и сообщение, что он выиграл.
+// void Lose() const - выводит на экран имя игрока и сообщение, что он проиграл.
+// void Push() const - выводит на экран имя игрока и сообщение, что он сыграл вничью.
+class Player : public GenericPlayer
+{
+public:
+    bool isHitting() const override
+    {
+        string yesNo = "";
+        cout << "Do you need one more card? (y/n)" << endl;
+        
+        return (yesNo == "y" || yesNo == "Y") ? true : false;
+    }
+    void win() const
+    {
+        cout << "Player " << m_playerName << "won!" << endl;
+    }
+    void loose() const
+    {
+        cout << "Player " << m_playerName << "lost!" << endl;
+    }
+    void push() const
+    {
+        cout << "Player " << m_playerName << "drew!" << endl;
+    }
+};
+
+
+// 4.
+// Реализовать класс House, который представляет дилера.Этот класс наследует от класса GenericPlayer.У него есть 2 метода:
+// virtual bool IsHitting() const - метод указывает, нужна ли дилеру еще одна карта.Если у дилера не больше 16 очков, то он берет еще одну карту.
+// void FlipFirstCard() - метод переворачивает первую карту дилера.
+//
+
+class House : public GenericPlayer
+{
+
+public:
+    bool isHitting() const override
+    {
+        return getTotal() < 16;
+    }
+    void flipFirstCard()
+    {
+        if (!m_cards.empty())
+        {
+            m_cards[0]->flip();
+        }
+    }
 };
 
 // 5. 
