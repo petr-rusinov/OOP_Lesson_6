@@ -11,7 +11,31 @@ using namespace std;
 // nj34njkn
 // 1n
 
+bool inputIntNumber(int& number)
+{
+    cin >> number;
+    if (cin.fail())
+    {
+        cin.clear();
+        cin.ignore(32767, '\n');
+        return false;
+    }
+    else
+        return true;
+}
 
+
+void task_1()
+{
+    int numberToInput = 0;
+
+    cout << "Input int number:" << endl;
+    while (!inputIntNumber(numberToInput))
+    {
+        cout << "try again" << endl;
+    }
+    cout << "Your number: " << numberToInput << endl;
+}
 
 // 2.
 // Создать собственный манипулятор endll для стандартного потока вывода, который выводит два перевода строки и сбрасывает буфер.
@@ -46,5 +70,6 @@ ostream& endll(ostream& out)
 
 int main()
 {
+    task_1();
     cout << "Test message1 " << endl << "Test message2" << endll << "Test message3" << endl;
 }
