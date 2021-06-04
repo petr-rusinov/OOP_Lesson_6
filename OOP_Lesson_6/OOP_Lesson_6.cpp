@@ -70,6 +70,10 @@ ostream& endll(ostream& out)
 
 int main()
 {
-    task_1();
+    //task_1();
     cout << "Test message1 " << endl << "Test message2" << endll << "Test message3" << endl;
+
+
+    Card c(CLUBS, QUEEN, true);
+    cout << c;
 }
