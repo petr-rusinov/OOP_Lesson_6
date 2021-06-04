@@ -76,4 +76,14 @@ int main()
 
     Card c(CLUBS, QUEEN, true);
     cout << c;
+
+    Player p("Peter");
+    if (p.isHitting())
+        cout << true << endl;
+    else
+        cout << false << endl;
+    p.win();
+    p.loose();
+    p.push();
+    p.bust();
 }

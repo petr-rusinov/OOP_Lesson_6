@@ -109,24 +109,26 @@ public:
 class Player : public GenericPlayer
 {
 public:
+    Player(const string& name) : GenericPlayer(name) { }
     bool isHitting() const override
     {
         string yesNo = "";
         cout << "Do you need one more card? (y/n)" << endl;
+        cin >> yesNo;
         
         return (yesNo == "y" || yesNo == "Y") ? true : false;
     }
     void win() const
     {
-        cout << "Player " << m_playerName << "won!" << endl;
+        cout << "Player " << m_playerName << " won!" << endl;
     }
     void loose() const
     {
-        cout << "Player " << m_playerName << "lost!" << endl;
+        cout << "Player " << m_playerName << " lost!" << endl;
     }
     void push() const
     {
-        cout << "Player " << m_playerName << "drew!" << endl;
+        cout << "Player " << m_playerName << " drew!" << endl;
     }
 };
 
